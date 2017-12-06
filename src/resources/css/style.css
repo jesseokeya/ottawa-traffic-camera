@@ -1,0 +1,55 @@
+.city-map {
+  height: 85vh;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card {
+  margin-top: 25px;
+}
+
+.badge {
+  padding: 17px;
+  font-size: 15px;
+}
+
+.loader {
+  border: 8px solid white;
+  border-radius: 50%;
+  border-top: 8px solid #00b8d8;
+  border-bottom: 8px solid #00b8d8;
+  position: fixed;
+  position: fixed;
+  left: 50%;
+  margin-left: -4em;
+  top: 35%;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
