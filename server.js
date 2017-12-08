@@ -40,6 +40,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/index.html');
 });
 
+// render invalid page
+app.get('/invalid', (req, res) => {
+  res.sendFile(__dirname + '/src/invalid.html');
+});
+
 app.get('/credentials', (req, res) => {
   res.send({
     data: credentials,
