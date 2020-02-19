@@ -82,9 +82,9 @@ const getMap = () => {
 
 const displayInfoWindow = (location) => {
   const cred = serverData.credentials;
-  const url = 'http://traffic.ottawa.ca/opendata/camera';
+  const url = 'https://traffic.ottawa.ca/map/camera?';
   const path = `&certificate=${cred.certificate}&id=${cred.id}`;
-  const imgSrc = `${url}?c=${location.id}${path}`;
+  const imgSrc = `${url}id=${location.id}&timems=${new Date().getTime()}`;
   return (`<br/><h4><b>${location.description}</b></h4><br/>
     <div class="text-center">
       <img class="rounded" style="width: 400px; height: 300px;" src=${imgSrc} alt="Camera Image"/>

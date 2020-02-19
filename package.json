@@ -16,10 +16,10 @@
   "author": "Jesse Okeya",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "morgan": "^1.9.0",
-    "request": "^2.83.0"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "request": "^2.88.2"
   },
   "repository": {
     "type": "git",
