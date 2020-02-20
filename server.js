@@ -6,7 +6,6 @@ const request = require('request');
 const {
   credentials
 } = require('./config');
-const {notWorkingCards} = require('./invalid');
 const app = express();
 
 // set app port
@@ -40,11 +39,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/index.html');
 });
 
-// render invalid page
-app.get('/invalid', (req, res) => {
-  res.sendFile(__dirname + '/src/invalid.html');
-});
-
 app.get('/credentials', (req, res) => {
   res.send({
     data: credentials,
@@ -53,14 +47,6 @@ app.get('/credentials', (req, res) => {
   });
 })
 
-app.get('/invalidCards', (req, res) => {
-  res.send({
-    data: notWorkingCards,
-    statusCode: 200,
-    message: 'Array Of All Camera Locations Without A Working Image'
-  })
-});
-
 app.get('/cityCameras', (req, res) => {
   const url = 'http://traffic.ottawa.ca/map/camera_list';
   request(url, (err, response) => {
@@ -68,7 +54,6 @@ app.get('/cityCameras', (req, res) => {
       throw err;
     }
     res.json(JSON.parse(response.body));
-
   });
 });
 

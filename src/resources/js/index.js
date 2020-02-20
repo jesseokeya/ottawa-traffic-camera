@@ -1,11 +1,7 @@
-let notWorkingCards = null;
 const serverData = {};
 
 $(document).ready(() => {
   useEnterToSearch();
-  $.get('/invalidCards', (result) => {
-    notWorkingCards = result.data;
-  });
 
   $.get('/credentials', (result) => {
     serverData.credentials = result.data;
@@ -19,7 +15,6 @@ $(document).ready(() => {
     let locations = [];
 
     for (let i in result) {
-      let dataAtIndexIsValid = true;
       const infoWindow = displayInfoWindow(result[i]);
       const geolocation = [
         result[i].latitude,
@@ -28,14 +23,7 @@ $(document).ready(() => {
       const location = [
         infoWindow, geolocation[0], geolocation[1]
       ];
-      for (let j in notWorkingCards) {
-        if (result[i].description === notWorkingCards[j]) {
-          dataAtIndexIsValid = false;
-        }
-      }
-      if (dataAtIndexIsValid) {
-        locations.push(location);
-      }
+      locations.push(location);
     }
 
     const map = new google.maps.Map(document.getElementById('map'), {
@@ -83,7 +71,6 @@ const getMap = () => {
 const displayInfoWindow = (location) => {
   const cred = serverData.credentials;
   const url = 'https://traffic.ottawa.ca/map/camera?';
-  const path = `&certificate=${cred.certificate}&id=${cred.id}`;
   const imgSrc = `${url}id=${location.id}&timems=${new Date().getTime()}`;
   return (`<br/><h4><b>${location.description}</b></h4><br/>
     <div class="text-center">
@@ -143,15 +130,9 @@ const searchAlgorithm = (data, searchTerm) => {
 }
 
 const card = (data, index) => {
-  for (let i in notWorkingCards) {
-    if (notWorkingCards[i] === data.description) {
-      return;
-    }
-  }
   const cred = serverData.credentials;
-  const url = 'http://traffic.ottawa.ca/opendata/camera';
-  const path = `&certificate=${cred.certificate}&id=${cred.id}`;
-  const imgSrc = `${url}?c=${data.id}${path}`;
+  const url = 'https://traffic.ottawa.ca/map/camera?';
+  const imgSrc = `${url}id=${data.id}&timems=${new Date().getTime()}`;
   return (`<div class="col-sm-8 col-md-6 col-lg-4 ">
       <div id=${ "card" + index} class="card shadow">
         <img  class="card-img-top img-fluid" src=${imgSrc} alt="Card image cap">
